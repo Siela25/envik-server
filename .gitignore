@@ -1,0 +1,30 @@
+﻿## .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.exe
+
+## VS Code
+.vscode/
+.vs/
+
+## Rider
+.idea/
+
+## Environment
+appsettings.Development.json
+*.env
+.env.*
+
+## Database
+*.db
+*.db-shm
+*.db-wal
+
+## macOS
+.DS_Store
+EOF

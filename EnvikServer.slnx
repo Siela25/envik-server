@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EnvikServer.API/EnvikServer.API.csproj" />
+    <Project Path="src/EnvikServer.Application/EnvikServer.Application.csproj" />
+    <Project Path="src/EnvikServer.Core/EnvikServer.Core.csproj" />
+    <Project Path="src/EnvikServer.Infrastructure/EnvikServer.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EnvikServer.API.Tests/EnvikServer.API.Tests.csproj" />
+    <Project Path="tests/EnvikServer.Application.Tests/EnvikServer.Application.Tests.csproj" />
+  </Folder>
+</Solution>
