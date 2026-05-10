@@ -1,4 +1,5 @@
 <Solution>
+  <Folder Name="/Solution Items/" />
   <Folder Name="/src/">
     <Project Path="src/EnvikServer.API/EnvikServer.API.csproj" />
     <Project Path="src/EnvikServer.Application/EnvikServer.Application.csproj" />
