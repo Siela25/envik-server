@@ -1,6 +1,6 @@
 ﻿namespace EnvikServer.Infrastructure.Repositories;
 
-public class ProjectPepository
+public class ProjectRepository
 {
     
 }
