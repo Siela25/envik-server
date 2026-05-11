@@ -1,0 +1,50 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envik-api
+  namespace: envik
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: envik-api
+  template:
+    metadata: 
+      labels:
+        app: envik-api
+    spec:
+      containers:
+        - name: envik-api
+          image: envik-server:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: envik-config
+          env:
+            - name: JwtSettings__SecretKey
+              valueFrom:
+                secretKeyRef:
+                  key: JWT_SECRET_KEY
+                  name: envik-secrets
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /health
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      

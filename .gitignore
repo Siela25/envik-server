@@ -27,4 +27,6 @@ appsettings.Development.json
 
 ## macOS
 .DS_Store
-EOF
+
+## k8s
+k8s/secrets.yaml
