@@ -8,12 +8,10 @@
     <PackageReference Include="AutoMapper" Version="16.1.1" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="10.0.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Auth\" />
-    <Folder Include="DTOs\Environments\" />
-    <Folder Include="DTOs\Projects\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
