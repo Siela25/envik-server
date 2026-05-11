@@ -28,6 +28,11 @@ spec:
                 secretKeyRef:
                   key: JWT_SECRET_KEY
                   name: envik-secrets
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: envik-secrets
+                  key: DB_CONNECTION_STRING
           livenessProbe:
             httpGet:
               port: 8080

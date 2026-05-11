@@ -1,0 +1,23 @@
+﻿apiVersion: batch/v1
+kind: Job
+metadata:
+  name: envik-migrate
+  namespace: envik
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrator
+          image: envik-migrator:latest
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: envik-config
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  key: DB_CONNECTION_STRING
+                  name: envik-secrets
