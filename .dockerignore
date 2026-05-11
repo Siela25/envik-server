@@ -1,0 +1,9 @@
+﻿**/.git
+**/.gitignore
+**/bin
+**/obj
+**/*.md
+**/appsettings.Development.json
+docker-compose.yaml
+Dockerfile
+k8s/
