@@ -15,7 +15,7 @@ public class User
 
     public ICollection<OAuthAccount> OAuthAccounts { get; set; } = new List<OAuthAccount>();
     public ICollection<Organization> OwnedOrganizations { get; set; } = new List<Organization>();
-    public ICollection<OrganizationMember> OrganizationMemeberships { get; set; } = new List<OrganizationMember>();
+    public ICollection<OrganizationMember> OrganizationMemberships { get; set; } = new List<OrganizationMember>();
 }
 
 public class OAuthAccount

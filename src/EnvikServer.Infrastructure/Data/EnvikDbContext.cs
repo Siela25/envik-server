@@ -79,6 +79,11 @@ public class EnvikDbContext : DbContext
                 .WithMany(organization => organization.Projects)
                 .HasForeignKey(project => project.OrganizationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(project => project.Creator)
+                .WithMany()
+                .HasForeignKey(project => project.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
         });
         
         // Environment
@@ -91,6 +96,11 @@ public class EnvikDbContext : DbContext
                 .WithMany(project => project.Environments)
                 .HasForeignKey(env => env.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(env => env.LastModifier)
+                .WithMany()
+                .HasForeignKey(env => env.LastModifiedBy)
+                .OnDelete(DeleteBehavior.Restrict);
         });
     }
 }

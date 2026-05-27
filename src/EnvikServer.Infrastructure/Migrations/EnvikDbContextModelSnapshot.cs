@@ -41,9 +41,6 @@ namespace EnvikServer.Infrastructure.Migrations
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("LastModifierId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -56,7 +53,7 @@ namespace EnvikServer.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LastModifierId");
+                    b.HasIndex("LastModifiedBy");
 
                     b.HasIndex("ProjectId", "Name")
                         .IsUnique();
@@ -181,9 +178,6 @@ namespace EnvikServer.Infrastructure.Migrations
                     b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CreatorId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -203,7 +197,7 @@ namespace EnvikServer.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("OrganizationId", "Slug")
                         .IsUnique();
@@ -260,8 +254,8 @@ namespace EnvikServer.Infrastructure.Migrations
                 {
                     b.HasOne("EnvikServer.Core.Entities.User", "LastModifier")
                         .WithMany()
-                        .HasForeignKey("LastModifierId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("LastModifiedBy")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("EnvikServer.Core.Entities.Project", "Project")
@@ -306,7 +300,7 @@ namespace EnvikServer.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("EnvikServer.Core.Entities.User", "User")
-                        .WithMany("OrganizationMemeberships")
+                        .WithMany("OrganizationMemberships")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -320,8 +314,8 @@ namespace EnvikServer.Infrastructure.Migrations
                 {
                     b.HasOne("EnvikServer.Core.Entities.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("EnvikServer.Core.Entities.Organization", "Organization")
@@ -351,7 +345,7 @@ namespace EnvikServer.Infrastructure.Migrations
                 {
                     b.Navigation("OAuthAccounts");
 
-                    b.Navigation("OrganizationMemeberships");
+                    b.Navigation("OrganizationMemberships");
 
                     b.Navigation("OwnedOrganizations");
                 });

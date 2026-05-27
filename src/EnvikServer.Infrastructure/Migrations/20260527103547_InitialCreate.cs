@@ -115,8 +115,7 @@ namespace EnvikServer.Infrastructure.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     CreatedById = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uuid", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,11 +127,11 @@ namespace EnvikServer.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Projects_Users_CreatorId",
-                        column: x => x.CreatorId,
+                        name: "FK_Projects_Users_CreatedById",
+                        column: x => x.CreatedById,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,8 +145,7 @@ namespace EnvikServer.Infrastructure.Migrations
                     EncryptionMetadata = table.Column<string>(type: "text", nullable: true),
                     LastModifiedBy = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,17 +157,17 @@ namespace EnvikServer.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Environments_Users_LastModifierId",
-                        column: x => x.LastModifierId,
+                        name: "FK_Environments_Users_LastModifiedBy",
+                        column: x => x.LastModifiedBy,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Environments_LastModifierId",
+                name: "IX_Environments_LastModifiedBy",
                 table: "Environments",
-                column: "LastModifierId");
+                column: "LastModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Environments_ProjectId_Name",
@@ -210,9 +208,9 @@ namespace EnvikServer.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Projects_CreatorId",
+                name: "IX_Projects_CreatedById",
                 table: "Projects",
-                column: "CreatorId");
+                column: "CreatedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_OrganizationId_Slug",
