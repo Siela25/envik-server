@@ -1,4 +1,5 @@
 using System.Text;
+using EnvikServer.API.Middleware;
 using EnvikServer.Application.Services;
 using EnvikServer.Core.Entities;
 using EnvikServer.Core.Interfaces;
@@ -66,17 +67,16 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
-
-if (app.Environment.IsDevelopment())
-{
     app.UseHttpsRedirection();
 }
+
 
 app.UseCors("AllowAll");
 app.UseAuthentication();
